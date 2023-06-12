@@ -1,4 +1,4 @@
-import { IOptions, Resp, Callback, ISourcesData, IArticleData } from '../../types/index';
+import { IOptions, Resp, CallbackType } from '../../types/index';
 
 class Loader {
     public baseLink: string;
@@ -9,9 +9,9 @@ class Loader {
         this.options = options;
     }
 
-    getResp(
+    getResp<T>(
         { endpoint, options = {} }: Resp,
-        callback = () => {
+        callback: CallbackType<T> = () => {
             console.error('No callback for GET response');
         }
     ) {
@@ -39,11 +39,11 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    load(method: string, endpoint: string, callback: Callback<ISourcesData | IArticleData>, options = {}) {
+    load<T>(method: string, endpoint: string, callback: CallbackType<T>, options = {}) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())
-            .then((data) => callback(data))
+            .then((data: T) => callback(data))
             .catch((err) => console.error(err));
     }
 }

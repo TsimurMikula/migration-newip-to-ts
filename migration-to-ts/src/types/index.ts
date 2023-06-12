@@ -10,7 +10,7 @@ export interface ISources {
 
 export interface ISourcesData {
     status: string;
-    sources: ISources[];
+    sources?: ISources[];
 }
 
 export interface IArticle {
@@ -42,4 +42,4 @@ export type Resp = {
     options?: IOptions;
 };
 
-export type Callback<T> = (data: T) => void;
+export type CallbackType<T> = (data: T) => void;
