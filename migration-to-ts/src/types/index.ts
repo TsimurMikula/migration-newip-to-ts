@@ -1,4 +1,4 @@
-export interface ISourse {
+export interface ISources {
   id: string;
   name: string;
   description: string;
@@ -8,10 +8,15 @@ export interface ISourse {
   country: string;
 }
 
+export interface ISourcesData {
+  status: string;
+  sources: ISources[];
+}
+
 export interface IArticle {
   source: {
-      id: string;
-      name: string;
+    id: string;
+    name: string;
   };
   author: string;
   title: string;
@@ -22,7 +27,7 @@ export interface IArticle {
   content: string;
 }
 
-export interface IData {
+export interface IArticleData {
   status: string;
   totalResults: number;
   articles: IArticle[];
